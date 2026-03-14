@@ -21,6 +21,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import type { RssData } from '@/types'
 
 import { Button } from './ui/button'
+import { Skeleton } from './ui/skeleton'
 import { Spinner } from './ui/spinner'
 
 export default function MyCard({ url }: { url: string }) {
@@ -58,7 +59,9 @@ export default function MyCard({ url }: { url: string }) {
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle>{rssData?.title}</CardTitle>
+        <CardTitle>
+          {isLoading ? (<Spinner />) : (<span>{rssData?.title }</span>)}
+        </CardTitle>
         <CardAction>
           <Button variant="outline" size="icon" onClick={refreshRssData}>
             <RefreshCcwIcon />
@@ -67,13 +70,13 @@ export default function MyCard({ url }: { url: string }) {
       </CardHeader>
       <CardContent className="flex items-center justify-center">
         {isLoading
-          ? (<Spinner className="size-8" />)
+          ? (<Skeleton className="aspect-video w-full" />)
           : (
               <ScrollArea className="h-96">
                 <div className="flex flex-col gap-2">
                   {rssData?.items.map((item, index) => (
-                    <Item variant="outline" size="sm" asChild key={item.link}>
-                      <a href={item.link} target="_blank">
+                    <Item variant="outline" asChild key={item.link}>
+                      <a href={item.link} target="_blank" rel="noreferrer">
                         <ItemMedia>
                           {index + 1}
                         </ItemMedia>

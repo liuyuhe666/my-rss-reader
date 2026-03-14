@@ -1,9 +1,19 @@
+import process from 'node:process'
+
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import MyCard from '@/components/MyCard'
-import { rssList } from '@/lib/config'
 
-export default function Home() {
+export default async function Home() {
+  const response = await fetch(`https://api.github.com/gists/${process.env.GIST_ID}`)
+  const jsonData = await response.json()
+  const { files } = jsonData
+  const rssList: string[] = []
+  files[process.env.GIST_FILENAME!].content.split('\n').forEach((line: string) => {
+    if (line.trim() !== '') {
+      rssList.push(line.trim())
+    }
+  })
   return (
     <div className="flex min-h-screen flex-col items-center justify-between">
       <Header />
