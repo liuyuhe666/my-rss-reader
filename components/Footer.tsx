@@ -4,7 +4,7 @@ import { siteConfig } from '@/lib/config'
 
 export default function Footer() {
   return (
-    <footer>
+    <footer className="w-full border-t">
       <p className="py-12 text-center">
         Made with ❤️ by
         {' '}

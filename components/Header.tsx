@@ -1,9 +1,10 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { siteConfig } from '@/lib/config'
 
-import { GitHubLink } from './GitHubLink'
 import { ModeToggle } from './ModeToggle'
+import { Button } from './ui/button'
 
 export default function Header() {
   return (
@@ -14,7 +15,11 @@ export default function Header() {
           <h1 className="text-2xl font-bold">{siteConfig.title}</h1>
         </div>
         <div className="flex items-center gap-2">
-          <GitHubLink />
+          <Button>
+            <Link href={siteConfig.github} target="_blank" rel="noopener noreferrer">
+              Star on GitHub
+            </Link>
+          </Button>
           <ModeToggle />
         </div>
       </div>

@@ -32,12 +32,12 @@ export default function MyCard({ url }: { url: string }) {
     const fetchRssData = async () => {
       const response = await fetch(`/api/rss?url=${encodeURIComponent(url)}`)
       const { code, message, data } = await response.json()
-      if (code === 0) {
+      if (code === 20000) {
         setRssData(data)
         setIsLoading(false)
       }
       else {
-        toast.error(message || '获取数据失败')
+        toast.error(message || '获取数据失败', { position: 'top-center' })
       }
     }
     fetchRssData()
@@ -47,12 +47,12 @@ export default function MyCard({ url }: { url: string }) {
     setIsLoading(true)
     const response = await fetch(`/api/rss?url=${encodeURIComponent(url)}`)
     const { code, message, data } = await response.json()
-    if (code === 0) {
+    if (code === 20000) {
       setRssData(data)
       setIsLoading(false)
     }
     else {
-      toast.error(message || '获取数据失败')
+      toast.error(message || '获取数据失败', { position: 'top-center' })
     }
   }
 
