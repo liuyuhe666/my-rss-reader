@@ -70,9 +70,9 @@ export default function MyCard({ url }: { url: string }) {
       </CardHeader>
       <CardContent className="flex items-center justify-center">
         {isLoading
-          ? (<Skeleton className="aspect-video w-full" />)
+          ? (<Skeleton className="h-96 w-82.5" />)
           : (
-              <ScrollArea className="h-96">
+              <ScrollArea className="h-96 w-82.5">
                 <div className="flex flex-col gap-2">
                   {rssData?.items.map((item, index) => (
                     <Item variant="outline" asChild key={item.link}>
