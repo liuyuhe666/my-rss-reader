@@ -5,7 +5,7 @@ import Header from '@/components/Header'
 import MyCard from '@/components/MyCard'
 
 export default async function Home() {
-  const response = await fetch(`https://api.github.com/gists/${process.env.GIST_ID}`)
+  const response = await fetch(`https://api.github.com/gists/${process.env.GIST_ID}`, { cache: 'no-cache' })
   const jsonData = await response.json()
   const { files } = jsonData
   const rssList: string[] = []
